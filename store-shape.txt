@@ -1,0 +1,32 @@
+store = {
+    session: {},
+    gymDetails: {
+        gymId: {
+            gymBody,
+            user: {userData for gym owner},
+            reviews: {
+                reviewId: {
+                    reviewBody,
+                    user: {userData of author}
+                }
+            }
+        }
+    },
+    allGyms: {
+        gymId: {
+            gymData,
+            user: {userData for gym owner}
+        }
+    },
+    brands: {
+        brandId: {
+            brandBody,
+            country
+        }
+    }
+    athletes: {
+        athleteId: {
+            atheleteBody
+        }
+    }
+}
