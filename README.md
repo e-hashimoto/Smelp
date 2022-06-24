@@ -11,4 +11,3 @@ coolest places to play badminton!  Users look for the highest rated gyms and clu
 - Express.js
 - Sequelize
 
-
