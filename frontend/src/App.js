@@ -5,6 +5,7 @@ import SignupForm from "./components/SignUpFormModal/SignUpForm";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from './components/home';
+import Rackets from "./components/rackets";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,8 +22,8 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/signup">
-            <SignupForm />
+          <Route>
+            <Rackets />
           </Route>
         </Switch>
       )}

@@ -51,5 +51,13 @@ router.get(
 );
 
 
+router.get(
+  '/rackets',
+  requireAuth,
+  (req, res) => {
+    return res.json()
+  }
+);
+
 
 module.exports = router;
