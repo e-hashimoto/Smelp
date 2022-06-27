@@ -1,31 +1,27 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Gym = sequelize.define('Gym', {
-    location: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [0, 256]
-      }
-    },
     title: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(55),
       allowNull: false,
-      validate: {
-        len: [3, 128]
-      }
+      unique: true
+    },
+    location: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
-      unique: true,
-      validate: {
-        len: [0, 2048]
-      }
+      type: DataTypes.STRING(1024),
+      allowNull: false
     },
+    sponsoredBy: {
+      type: DataTypes.INTEGER
+    }
   }, {});
   Gym.associate = function(models) {
     // associations can be defined here
-    Gym.hasMany(models.Review, { foreignKey: 'gymId'})
+    Gym.hasMany(models.Review, {foreignKey: 'gymId'});
+    Gym.belongsTo(models.Brand, {foreignKey: 'brandId'});
   };
   return Gym;
 };

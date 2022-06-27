@@ -4,14 +4,23 @@ module.exports = (sequelize, DataTypes) => {
     gymId: {
       type: DataTypes.INTEGER
     },
-    userId: DataTypes.INTEGER,
-    rating: DataTypes.INTEGER,
-    description: DataTypes.STRING
+    userId: {
+      type: DataTypes.INTEGER
+    },
+    title: {
+      type: DataTypes.STRING
+    },
+    rating: {
+      type: DataTypes.INTEGER
+    },
+    description: {
+      type: DataTypes.STRING
+    }
   }, {});
   Review.associate = function(models) {
     // associations can be defined here
-    Review.belongsTo(models.Gym, { foreignKey: 'gymId'});
-    Review.belongsTo(models.User, { foreignKey: 'userId'})
+    Review.belongsTo(models.Gym, {foreignKey: 'gymId'});
+    Review.belongsTo(models.User, {foreignKey: 'userId'});
   };
   return Review;
 };
