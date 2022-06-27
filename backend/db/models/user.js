@@ -86,6 +86,8 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     };
 
+    User.hasMany(models.Review, { foreignKey: 'userId'})
+
   };
 
   return User;

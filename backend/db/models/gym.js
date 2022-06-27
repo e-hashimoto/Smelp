@@ -12,19 +12,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [3, 55]
+        len: [3, 128]
       }
     },
     description: {
       type: DataTypes.STRING,
       unique: true,
       validate: {
-        len: [0, 512]
+        len: [0, 2048]
       }
     },
   }, {});
   Gym.associate = function(models) {
     // associations can be defined here
+    Gym.hasMany(models.Review, { foreignKey: 'gymId'})
   };
   return Gym;
 };
