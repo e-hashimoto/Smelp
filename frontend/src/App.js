@@ -5,7 +5,7 @@ import SignupForm from "./components/SignUpFormModal/SignUpForm";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from './components/home';
-// import Rackets from "./components/Rackets";
+import Rackets from "./components/Rackets";
 import Gyms from "./components/Gyms";
 
 function App() {
@@ -23,9 +23,12 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          {/* <Route>
+          <Route>
+            <SignupForm path="/signup"/>
+          </Route>
+          <Route>
             <Rackets path="/rackets"/>
-          </Route> */}
+          </Route>
           <Route>
             <Gyms path="/gyms"/>
           </Route>
