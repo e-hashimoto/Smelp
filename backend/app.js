@@ -31,6 +31,7 @@ app.use(
 );
 
 // Set the _csrf token and create req.csrfToken method
+// when testing postman, comment out to avoid throwing errors
 app.use(
   csurf({
     cookie: {

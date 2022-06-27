@@ -22,9 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         len: [0, 512]
       }
     },
-    sponsoredBy: {
-      type: DataTypes.STRING
-    }
   }, {});
   Gym.associate = function(models) {
     // associations can be defined here

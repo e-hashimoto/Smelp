@@ -14,16 +14,13 @@ module.exports = {
         unique: true
       },
       title: {
-        type: Sequelize.STRING(55),
+        type: Sequelize.STRING(128),
         allowNull: false,
         unique: true
       },
       description: {
-        type: Sequelize.STRING(512),
+        type: Sequelize.STRING(2048),
         unique: true
-      },
-      sponsoredBy: {
-        type: Sequelize.STRING(30),
       },
       createdAt: {
         allowNull: false,
