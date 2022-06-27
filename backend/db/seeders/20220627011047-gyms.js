@@ -84,7 +84,43 @@ module.exports = {
      {
       location: '9 Truman St., Irvine, CA 92620',
       title: 'South Coast Chinese Cultural Association Badminton Club (SCCCA BC)',
-      description: 'We compete in the Southern California Collegiate Badminton League and our players participate in many tournaments throughout the year, including collegiate national championships. Our league is made up of the following universities: UCLA, UCSD, UCI, USC, UCD, UCR, UCSB, CSUN, CPP, CPSLO, CSUSB, and CSULB. In addition to those we also scrimmage against various other collegiate teams such as Standford, Berkeley, SJSU, SDSU, and FSU. Hours of operation: Tues: 9:00pm - 12:00am, Thurs: 6:00pm - 9:00pm, Sat: 10:00am - 1:00pm. 6 courts available. Tournament Grade Feather Birds provided; Club Shirt; Training from Experienced Coaches; League Participation and Traveling; End of the Year Banquet.',
+      description: 'The 10,000 square-foot gymnasium has 6 six badminton courts and is equipped with NBA-standard hardwood floor courts. The gym is open to the public and everyone is welcome to play. Hours of operation: Tues, Wed: 11:30am - 2:00pm (summer closed)l Thurs, Fri: 7:15pm - 9:45pm (7:00pm open for sign-in); Sat: 7:15pm - 9:45pm (6 courts available after 8:30pm; 7:00pm open for sign-in); Sun: 3:00pm - 6:00pm (6 courts available before 4:30pm, summer & some holidays)',
+      sponsoredBy: null
+     },
+     {
+      location: '24232 Calle Aragon, Laguna Woods CA 92637',
+      title: 'Laguna Woods Badminton Club',
+      description: '3 courts available.  Hours of operation: Mon - Fri: 7:30am - 9:00am; Sat - Sun: 9:00am - 12:00 noon',
+      sponsoredBy: null
+     },
+     {
+      location: '13641 Deodara Dr., Garden Grove CA',
+      title: 'Garden Grove Badminton Club',
+      description: '6 courts available.  $5 entry fee, and only open Sat 6:00 pm to 10:00 pm',
+      sponsoredBy: null
+     },
+     {
+      location: '5500 Irvine Center Dr., Irvine CA 92618',
+      title: 'Irvine Badminton Club',
+      description: 'Irvine Badminton Club operates Saturdays and Sundays at Irvine Valley College. We have 8 clearly marked courts with wood floor and good lighting. Player level ranges from national to beginner. Free mixing of partners for doubles matches. Hours of operation: Sat 4:30 pm - 6:30 pm (youth programs), 6:30 pm - 9:30 pm; Sun 1:00 pm - 4:00 pm. New member rate is prorated, $4/day, plus registration fee $60; Sat: $8 for walk-in, Sun: $6 non-member, $4 member walk-in',
+      sponsoredBy: null
+     },
+     {
+      location: '13641 Deodara Dr., Garden Grove CA 92844',
+      title: 'Garden Grove Sports & Recreation Center',
+      description: '6 courts available. Thurs: 6:00pm - 9:00pm (Jan-May, Sep-Nov); Sun: 5:00pm - 8:00pm Fees: Youth (0-14 yrs): $1, Teen (15-17 yrs): $2, Adult (18-55 yrs): $3, Senior (55+ yrs): $2',
+      sponsoredBy: null
+     },
+     {
+      location: '1432-A N. Main Street, Orange CA 92867',
+      title: 'Orange County B.C. (OCBC)',
+      description: 'The Olympic Sport of Badminton is the fastest racquet sport in the world. Come see how badminton is truly played at the Orange County Badminton (OCBC). OCBC offers training for all levels, including elite youth training programs to develop future US Badminton Champions. 12 courts. Adult: Initiation Fee $125.00, Monthly Dues $60.00, Annual Dues $648.00; Spouse/Senior (over 54 yrs.): Initiation Fee $100.00, Monthly Dues $50.00, Annual Dues $540.00',
+      sponsoredBy: null
+     },
+     {
+      location: '9255 Telstar Ave., El Monte CA 91731',
+      title: 'Woodshots Badminton Club',
+      description: 'Since 2006, a volunteer based group of badminton enthusiasts (now known as WSBC), has been promoting the sport of badminton for youth and adults alike in the local communities of Southern California with the goals of encouraging the ideals of good sportsmanship, honesty, loyalty, courage and respect as well as promoting physical activity through sports competitions. We hope to be a premier organization in Southern California that provides opportunities for youth badminton sport programs.',
       sponsoredBy: null
      },
   ], {});

@@ -1,5 +1,5 @@
 const rackets = () => {
-    return 
+    return;
 };
 
 module.exports = rackets;
