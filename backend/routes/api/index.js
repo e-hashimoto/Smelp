@@ -49,15 +49,4 @@ router.get(
     return res.json(req.user);
   }
 );
-
-
-router.get(
-  '/rackets',
-  requireAuth,
-  (req, res) => {
-    return res.json()
-  }
-);
-
-
 module.exports = router;

@@ -5,7 +5,8 @@ import SignupForm from "./components/SignUpFormModal/SignUpForm";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from './components/home';
-import Rackets from "./components/rackets";
+// import Rackets from "./components/Rackets";
+import Gyms from "./components/Gyms";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,8 +23,11 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
+          {/* <Route>
+            <Rackets path="/rackets"/>
+          </Route> */}
           <Route>
-            <Rackets />
+            <Gyms path="/gyms"/>
           </Route>
         </Switch>
       )}
