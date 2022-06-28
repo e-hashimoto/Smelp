@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
   Gym.associate = function(models) {
     // associations can be defined here
     Gym.hasMany(models.Review, {foreignKey: 'gymId'});
-    Gym.belongsTo(models.Brand, {foreignKey: 'brandId'});
+    // Gym.belongsTo(models.Brand, {foreignKey: 'brandId'});
   };
   return Gym;
 };
