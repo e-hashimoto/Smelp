@@ -1,4 +1,4 @@
-import * as sessionActions from "../../store/session";
+import * as sessionActions from "../store/session";
 import { useDispatch } from "react-redux";
 
 function Home() {
