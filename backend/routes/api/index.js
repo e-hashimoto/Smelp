@@ -2,6 +2,8 @@ const router = require('express').Router();
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
 
+const { handleValidationErrors } = require('../../utils/validation');
+
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
@@ -47,5 +49,4 @@ router.get(
     return res.json(req.user);
   }
 );
-
 module.exports = router;
