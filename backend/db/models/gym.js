@@ -14,14 +14,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(1024),
       allowNull: false
     },
-    sponsoredBy: {
+    brandId: {
       type: DataTypes.INTEGER
     }
   }, {});
   Gym.associate = function(models) {
     // associations can be defined here
     Gym.hasMany(models.Review, {foreignKey: 'gymId'});
-    // Gym.belongsTo(models.Brand, {foreignKey: 'brandId'});
+    Gym.belongsTo(models.Brand, {foreignKey: 'brandId'});
   };
   return Gym;
 };

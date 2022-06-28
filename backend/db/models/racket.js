@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {});
   Racket.associate = function(models) {
-    // Racket.belongsTo(models.Brand, { foreignKey: 'brandId'});
+    Racket.belongsTo(models.Brand, { foreignKey: 'brandId'});
     Racket.hasMany(models.Athlete, {foreignKey: 'racketId'});
   };
   return Racket;
