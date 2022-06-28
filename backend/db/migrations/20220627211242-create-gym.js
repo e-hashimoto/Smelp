@@ -24,6 +24,7 @@ module.exports = {
       },
       brandId: {
         type: Sequelize.INTEGER,
+        allowNull: true,
         references: { model: 'Brands'}
       },
       createdAt: {

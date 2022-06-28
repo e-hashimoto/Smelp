@@ -14,7 +14,7 @@ module.exports = {
         unique: true
       },
       countryName: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(55),
         allowNull: false,
       },
       racketId: {
@@ -22,7 +22,7 @@ module.exports = {
         references: { model: 'Rackets' }
       },
       accomplishments: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(1024)
       },
       createdAt: {
         allowNull: false,
