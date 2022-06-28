@@ -20,9 +20,6 @@ module.exports = {
       description: {
         type: Sequelize.STRING(512)
       },
-      notableAthletes: {
-        type: Sequelize.STRING(512)
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

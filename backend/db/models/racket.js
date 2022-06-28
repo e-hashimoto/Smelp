@@ -11,9 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     description: {
       type: DataTypes.STRING,
-    },
-    notableAthletes: {
-      type: DataTypes.STRING,
     }
   }, {});
   Racket.associate = function(models) {

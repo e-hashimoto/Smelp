@@ -13,9 +13,9 @@ module.exports = {
         allowNull: false,
         unique: true
       },
-      countryId: {
-        type: Sequelize.INTEGER,
-        references: { model: 'Brands' }
+      countryName: {
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       racketId: {
         type: Sequelize.INTEGER,

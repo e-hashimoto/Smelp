@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Athlete = sequelize.define('Athlete', {
     name: DataTypes.STRING,
-    countryId: DataTypes.INTEGER,
+    countryName: DataTypes.STRING,
     racketId: DataTypes.INTEGER,
     accomplishments: DataTypes.STRING
   }, {});
