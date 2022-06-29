@@ -10,4 +10,6 @@ const { check } = require("express-validator");
 router.get('/gyms', async(req, res) => {
     const allGyms = await db.Gym.findAll();
     return res.json(allGyms);
-})
+});
+
+module.exports = router;
