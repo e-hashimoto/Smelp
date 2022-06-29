@@ -1,12 +1,15 @@
 const router = require('express').Router();
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
+const gymsRouter = require('./gyms');
 
 const { handleValidationErrors } = require('../../utils/validation');
 
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+
+router.use('/gyms', gymsRouter);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });
