@@ -5,6 +5,7 @@ const router = express.Router();
 const db = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
 const gymValidations = require('../../utils/gym');
+const { validationResult } = require('express-validator');
 
 // const { check } = require("express-validator");
 
@@ -45,22 +46,47 @@ router.post(
     }
 });
 
-router.get('/:gymId(\\d+)', async(req, res) => {
-    const gymId = parseInt(req.params.gymId, 10);
-    const gym = await db.Gym.findByPk(gymId);
+router.get('/:id(\\d+)', async(req, res) => {
+    const id = parseInt(req.params.id, 10);
+    // console.log(gymId, "this should be a number");
+    const gym = await db.Gym.findOne({
+        where: { id }
+    });
 
-    if (!gym) res.redirect('/404');
+    // if (!gym) res.redirect('/404');
 
-    res.render();
+    return res.json(gym);
 });
 
-router.put(
-    '/:id',
+router.patch(
+    '/:id(\\d+)',
+    gymValidations.validateUpdate,
+    async (req, res) => {
+        const gym = await db.Gym.findByPk(req.params.gymId);
 
-);
+        gym.title = req.body.title;
+        gym.location = req.body.location;
+        gym.description = req.body.description;
+
+        const validatorErrors = validationResult(req);
+
+        if (validatorErrors.isEmpty()) {
+            await gym.save();
+            res.status(200);
+            res.json({ message: 'Successfully updated!', gym});
+        } else {
+            const errors = validatorErrors.array().map((error) => error.msg);
+            res.status(400);
+            res.json({message: 'Failed!', crag, errors});
+        }
+    }
+)
 
 router.delete(
     '/:id',
+    async (req, res) => {
+        
+    }
 );
 
 module.exports = router;

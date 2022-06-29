@@ -32,6 +32,9 @@ function App() {
           <Route>
             <Gyms path="/gyms"/>
           </Route>
+          <Route>
+            <h1>Page Not Found</h1>
+          </Route>
         </Switch>
       )}
     </>
