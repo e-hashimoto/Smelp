@@ -4,15 +4,19 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
+const gymValidations = require('../../utils/gym');
 
-const { check } = require("express-validator");
+// const { check } = require("express-validator");
 
 router.get('/', async(req, res) => {
     const allGyms = await db.Gym.findAll();
     return res.json(allGyms);
 });
 
-router.post('/', async(req, res) => {
+router.post(
+    '/',
+    gymValidations.validateCreate,
+    async(req, res) => {
     const {
         title,
         location,
@@ -24,8 +28,7 @@ router.post('/', async(req, res) => {
         title,
         location,
         description,
-        brandId,
-        userId: res.locals.user.id
+        brandId
     });
 
     const validatorErrors = handleValidationErrors(req);
@@ -35,7 +38,10 @@ router.post('/', async(req, res) => {
         res.redirect(`/gyms/${gym.id}`);
     } else {
         const errors = validatorErrors.array().map((error) => error.msg);
-
+        res.redirect(`/`, {
+            gym,
+            errors
+        });
     }
 });
 
