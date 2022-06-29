@@ -27,6 +27,7 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
+  console.log(data, "This is the data from the login thunk");
   dispatch(setUser(data.user));
   return response;
 };
