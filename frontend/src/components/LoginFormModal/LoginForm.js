@@ -20,23 +20,23 @@ function LoginForm() {
     setErrors([]);
     const credential = "Demo-lition";
     const password = "password";
-    return dispatch(
+    dispatch(
       sessionActions.login({
         credential,
         password,
-      }).catch(
-        async(res) => {
-          const data = await res.json();
-          if (data && data.errors) setErrors(data.errors)
-        }
-      )
+      })
+    ).catch(
+      async(res) => {
+        const data = await res.json();
+        if (data && data.errors) setErrors(data.errors)
+      }
     );
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    dispatch(sessionActions.login({ credential, password })).catch(
       async (res) => {
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
@@ -72,9 +72,7 @@ function LoginForm() {
         </label>
         <button type="submit">Log In</button>
       </form>
-      <form>
-        <button onSubmit={demo} type="submit">Demo User</button>
-      </form>
+      <button onClick={demo} type="submit">Demo User</button>
     </div>
 
   );
