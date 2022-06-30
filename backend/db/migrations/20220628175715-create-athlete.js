@@ -24,6 +24,12 @@ module.exports = {
       accomplishments: {
         type: Sequelize.STRING(1024)
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

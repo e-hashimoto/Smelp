@@ -16,12 +16,17 @@ module.exports = (sequelize, DataTypes) => {
     },
     brandId: {
       type: DataTypes.INTEGER
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {});
   Gym.associate = function(models) {
     // associations can be defined here
     Gym.hasMany(models.Review, {foreignKey: 'gymId'});
     Gym.belongsTo(models.Brand, {foreignKey: 'brandId'});
+    Gym.belongsTo(models.User, { foreignKey: 'userId'});
   };
   return Gym;
 };

@@ -26,27 +26,30 @@ router.post(
             brandId,
         } = req.body;
 
-        const gym = db.Gym.create({
+        console.log(req.body, "asl;dfjal;skdfjlaks;dfjkl;asdjfakl;dsjfkl;sad");
+
+        const gym = await db.Gym.build({
             title,
             location,
             description,
             brandId,
-            userId: res.locals.user.id,
-            gymId: parseInt(gymId, 10)
     });
 
-    return res.json(gym);
+    if (gym) {
+        await gym.save()
+        return res.json(gym);
+    };
 });
 
 router.get('/:id(\\d+)', async(req, res) => {
     const id = parseInt(req.params.id, 10);
     // console.log(gymId, "this should be a number");
-    const {
-        title,
-        location,
-        description,
-        brandId
-    } = res.body
+    // const {
+    //     title,
+    //     location,
+    //     description,
+    //     brandId
+    // } = res.body
     const gym = await db.Gym.findOne({
         where: { id },
         include: [
