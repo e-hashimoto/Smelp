@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { createGym, getBrands } from "../store/gyms";
+import { createGym, getBrands } from "../../store/gyms";
 
 const CreateGymForm = ({hideForm}) => {
     const dispatch = useDispatch();

@@ -1,11 +1,13 @@
-const LOAD = 'gyms/LOAD';
+import { csrfFetch } from "./csrf";
+
+const GET_GYMS = 'gyms/GET_GYMS'
 const ADD_ONE = 'gyms/ADD_ONE';
 const LOAD_BRANDS = 'brands/LOAD';
 
-
-const load = list => ({
-    type: LOAD,
-    list
+// Action creators
+const getAllGyms = gyms => ({
+    type: GET_GYMS,
+    gyms
 });
 
 const addOneGym = gym => ({
@@ -18,8 +20,10 @@ const loadBrands = brands => ({
     brands
 });
 
+// Thunks
+
 export const createGym = (payload) => async dispatch => {
-    const response = await fetch('/api/gyms', {
+    const response = await csrfFetch('/api/gyms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -32,56 +36,56 @@ export const createGym = (payload) => async dispatch => {
     }
 };
 
-export const getGym = () => async dispatch => {
-    const response = await fetch(`/api/gyms`);
+export const getGyms = () => async dispatch => {
+    const response = await csrfFetch(`/api/gyms`);
+
+    console.log(response);
     if (response.ok) {
-        const list = await response.json();
-        dispatch(load(list));
+        const data = await response.json();
+        console.log(data, "We should see something")
+        dispatch(getAllGyms(data));
     }
 };
 
 export const getBrands = () => async dispatch => {
-    const response = await fetch (`api/brands`);
+    const response = await csrfFetch(`api/brands`);
     if (response.ok) {
         const list = await response.json();
         dispatch(loadBrands(list))
     }
 }
 
-const initialState = {
-    list: [],
-};
 
+// REDUCER
+const initialState = {};
 
 const gymReducer = (state = initialState, action) => {
+    let newState;
     switch (action.type) {
-        case LOAD:
-            const allGyms = {};
-            action.list.forEach(gym => {
-                allGyms[gym.id] = gym;
+        case GET_GYMS:
+            newState = {...state};
+            action.gyms.forEach(gym => {
+                newState[gym.id] = gym;
             });
-            return {
-                ...allGyms,
-                ...state
-            };
-        case ADD_ONE:
-            if(!state[action.gym.id]) {
-                const newState = {
-                    ...state,
-                    [action.gym.id]: action.gym
-                };
-                const gymList = newState.list.map(id => newState[id]);
-                gymList.push(action.gym);
-                newState.list = gymList;
-                return newState;
-            }
-            return {
-                ...state,
-                [action.gym.id]: {
-                    ...state[action.gym.id],
-                    ...action.gym
-                }
-            };
+            return newState;
+        // case ADD_ONE:
+        //     if(!state[action.gym.id]) {
+        //         const newState = {
+        //             ...state,
+        //             [action.gym.id]: action.gym
+        //         };
+        //         const gymList = newState.list.map(id => newState[id]);
+        //         gymList.push(action.gym);
+        //         newState.list = gymList;
+        //         return newState;
+        //     }
+        //     return {
+        //         ...state,
+        //         [action.gym.id]: {
+        //             ...state[action.gym.id],
+        //             ...action.gym
+        //         }
+        //     };
         default:
             return state;
     }

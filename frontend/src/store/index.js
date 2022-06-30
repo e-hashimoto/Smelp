@@ -1,12 +1,12 @@
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
-import gyms from './gyms';
+import gymReducer from "./gyms";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
-  gyms
+  gyms: gymReducer,
 
 });
 

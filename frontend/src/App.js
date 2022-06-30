@@ -5,7 +5,7 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from './components/home';
 import Rackets from "./components/Rackets";
-import Gyms from "./components/Gyms";
+import Gyms from "./components/Gyms/AllGyms";
 
 function App() {
   const dispatch = useDispatch();

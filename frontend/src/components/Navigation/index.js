@@ -24,6 +24,7 @@ function Navigation({ isLoaded }) {
   return (
     <div className="header">
       <ul>
+        <NavLink to="/gyms">Gyms</NavLink>
         <NavLink exact to="/">
           Home
         </NavLink>
