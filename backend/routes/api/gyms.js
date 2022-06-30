@@ -24,15 +24,17 @@ router.post(
             location,
             description,
             brandId,
+            userId
         } = req.body;
 
         console.log(req.body, "asl;dfjal;skdfjlaks;dfjkl;asdjfakl;dsjfkl;sad");
 
-        const gym = await db.Gym.build({
+        const gym = await db.Gym.create({
             title,
             location,
             description,
             brandId,
+            userId
     });
 
     if (gym) {
@@ -42,40 +44,26 @@ router.post(
 });
 
 router.get('/:id(\\d+)', async(req, res) => {
-    const id = parseInt(req.params.id, 10);
-    // console.log(gymId, "this should be a number");
-    // const {
-    //     title,
-    //     location,
-    //     description,
-    //     brandId
-    // } = res.body
-    const gym = await db.Gym.findOne({
-        where: { id },
-        include: [
-            {
-                title,
-                location,
-                description,
-                brandId
-            }
-        ]
-    });
-
-    // if (!gym) res.redirect('/404');
-
-    return res.json(gym);
+    const gymId = parseInt(req.params.id, 10);
+    const gym = await db.Gym.findByPk(gymId);
+    if (gym) {
+        return res.json({gym})
+    }
 });
 
 router.patch(
     '/:id(\\d+)',
     gymValidations.validateUpdate,
     async (req, res) => {
-        const gym = await db.Gym.findByPk(req.params.gymId);
+        const gym = await db.Gym.findByPk(req.params.id);
+
+        console.log(gym, "the info should be here")
 
         gym.title = req.body.title;
         gym.location = req.body.location;
         gym.description = req.body.description;
+        gym.brandId = req.body.brandId;
+        gym.userId = req.body.userId;
 
         const validatorErrors = validationResult(req);
 
@@ -94,7 +82,18 @@ router.patch(
 router.delete(
     '/:id',
     async (req, res) => {
+        const id = parseInt(req.params.id, 10);
+        // console.log(id, 'this should be the thing')
+        const gym = await db.Gym.findByPk(
+            id
+        );
 
+        // console.log(gym, "Delete this shit!");
+
+        if (gym) {
+            await gym.destroy();
+            return res.json({ message: 'Gym successfully deleted.'});
+        }
     }
 );
 
