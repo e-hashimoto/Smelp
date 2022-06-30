@@ -22,19 +22,19 @@ const loadBrands = brands => ({
 
 // Thunks
 
-export const createGym = (payload) => async dispatch => {
-    const response = await csrfFetch('/api/gyms', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-    });
+// export const createGym = (payload) => async dispatch => {
+//     const response = await csrfFetch('/api/gyms', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify(payload)
+//     });
 
-    if (response.ok) {
-        const gym = await response.json();
-        dispatch(addOneGym(gym));
-        return gym;
-    }
-};
+//     if (response.ok) {
+//         const gym = await response.json();
+//         dispatch(addOneGym(gym));
+//         return gym;
+//     }
+// };
 
 export const getGyms = () => async dispatch => {
     const response = await csrfFetch(`/api/gyms`);

@@ -22,11 +22,11 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route>
-            <Gyms path="/gyms"/>
+          <Route path="/gyms">
+            <Gyms />
           </Route>
-          <Route>
-            <Rackets path="/rackets"/>
+          <Route path="/rackets">
+            <Rackets />
           </Route>
           <Route>
             <h1>Page Not Found</h1>
