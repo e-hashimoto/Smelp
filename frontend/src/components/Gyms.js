@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
+import CreateGymForm from './CreateGymForm';
 
 import { getGym } from '../../src/store/gyms';
 
@@ -18,9 +19,9 @@ const Gyms = () => {
     if (!gym) return null;
 
     return (
-        <div>
-            <h1>Gyms</h1>
-        </div>
+        <main>
+            
+        </main>
     )
 };
 

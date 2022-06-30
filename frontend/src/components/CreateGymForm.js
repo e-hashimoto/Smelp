@@ -6,26 +6,29 @@ import { createGym, getBrands } from "../store/gyms";
 const CreateGymForm = ({hideForm}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const brands = useSelector(state => state.brand.names)
+    // const brands = useSelector(state => state.brand.names)
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
-    const [brandId, setBrandId] = useState(null);
+    // const [brandId, setBrandId] = useState(null);
 
     const updateTitle = (e) => setTitle(e.target.value);
     const updateLocation = (e) => setLocation(e.target.value);
     const updateDescription = (e) => setDescription(e.target.value);
-    const updateBrandId = (e) => setBrandId(e.target.value);
+    // const updateBrandId = (e) => setBrandId(e.target.value);
 
-    useEffect(() => {
-        dispatch(getBrands());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(getBrands());
+    // }, [dispatch]);
 
-    useEffect(() => {
-        if (brands.length && !brandId) {
-            setBrandId(brandId) === null;
-        }
-    }, [brandId])
+    // useEffect(() => {
+    //     if (brands.length && !brandId) {
+    //         setBrandId(brandId) === null;
+    //         if (null) {
+
+    //         }
+    //     }
+    // }, [brandId])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -34,7 +37,7 @@ const CreateGymForm = ({hideForm}) => {
             title,
             location,
             description,
-            brandId
+            // brandId
         };
 
         let createdGym = await dispatch(createGym(payload));
@@ -70,9 +73,13 @@ const CreateGymForm = ({hideForm}) => {
                     required
                     value={description}
                     onChange={updateDescription}/>
-                <select onChange={updateBrandId} value={brandId}>
-                    {brandId}
-
+                {/* <select onChange={updateBrandId} value={brandId}>
+                    {brandId.map(brand =>
+                        <option key={brand}>{brand}</option>
+                    )}
+                </select> */}
+                <button type="submit">Create New Gym</button>
+                <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
         </section>
     )

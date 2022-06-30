@@ -1,5 +1,5 @@
 const express = require('express');
-// const asyncHandler = requrie('express-async-handler');
+// const asyncHandler = require('express-async-handler');
 
 const router = express.Router();
 const db = require('../../db/models');
@@ -22,14 +22,14 @@ router.post(
         title,
         location,
         description,
-        brandId
+        // brandId
     } = req.body;
 
     const gym = db.Gym.build({
         title,
         location,
         description,
-        brandId
+        // brandId
     });
 
     const validatorErrors = handleValidationErrors(req);
@@ -77,7 +77,7 @@ router.patch(
         } else {
             const errors = validatorErrors.array().map((error) => error.msg);
             res.status(400);
-            res.json({message: 'Failed!', crag, errors});
+            res.json({message: 'Failed!', gym, errors});
         }
     }
 )
@@ -85,7 +85,7 @@ router.patch(
 router.delete(
     '/:id',
     async (req, res) => {
-        
+
     }
 );
 
