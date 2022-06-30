@@ -1,5 +1,6 @@
 const LOAD = 'gyms/LOAD';
 const ADD_ONE = 'gyms/ADD_ONE';
+const LOAD_BRANDS = 'brands/LOAD';
 
 const load = list => ({
     type: LOAD,
@@ -9,6 +10,11 @@ const load = list => ({
 const addOneGym = gym => ({
     type: ADD_ONE,
     gym
+});
+
+const loadBrands = brands => ({
+    type: LOAD_BRANDS,
+    brands
 });
 
 export const createGym = (payload) => async dispatch => {
@@ -32,6 +38,10 @@ export const getGym = () => async dispatch => {
         dispatch(load(list));
     }
 };
+
+export const getBrands = () => async dispatch => {
+    const response = await fetch (`api/`)
+}
 
 const initialState = {
     list: [],
