@@ -17,40 +17,46 @@ router.get('/', async(req, res) => {
 router.post(
     '/',
     gymValidations.validateCreate,
+    handleValidationErrors,
     async(req, res) => {
-    const {
-        title,
-        location,
-        description,
-        // brandId
-    } = req.body;
+        const {
+            title,
+            location,
+            description,
+            brandId,
+        } = req.body;
 
-    const gym = db.Gym.build({
-        title,
-        location,
-        description,
-        // brandId
+        const gym = db.Gym.create({
+            title,
+            location,
+            description,
+            brandId,
+            userId: res.locals.user.id,
+            gymId: parseInt(gymId, 10)
     });
 
-    const validatorErrors = handleValidationErrors(req);
-
-    if (validatorErrors.isEmpty()) {
-        await gym.save();
-        res.redirect(`/gyms/${gym.id}`);
-    } else {
-        const errors = validatorErrors.array().map((error) => error.msg);
-        res.redirect(`/`, {
-            gym,
-            errors
-        });
-    }
+    return res.json(gym);
 });
 
 router.get('/:id(\\d+)', async(req, res) => {
     const id = parseInt(req.params.id, 10);
     // console.log(gymId, "this should be a number");
+    const {
+        title,
+        location,
+        description,
+        brandId
+    } = res.body
     const gym = await db.Gym.findOne({
-        where: { id }
+        where: { id },
+        include: [
+            {
+                title,
+                location,
+                description,
+                brandId
+            }
+        ]
     });
 
     // if (!gym) res.redirect('/404');

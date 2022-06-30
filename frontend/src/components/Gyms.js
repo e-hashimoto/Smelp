@@ -5,7 +5,7 @@ import CreateGymForm from './CreateGymForm';
 
 import { getGym } from '../../src/store/gyms';
 
-const Gyms = () => {
+function Gyms() {
     const dispatch = useDispatch();
     const { gymId } = useParams();
     const gym = useSelector(state => {
@@ -20,7 +20,9 @@ const Gyms = () => {
 
     return (
         <main>
-            
+            <div>
+                <CreateGymForm />
+            </div>
         </main>
     )
 };

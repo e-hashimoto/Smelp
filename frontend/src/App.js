@@ -23,10 +23,10 @@ function App() {
             <Home />
           </Route>
           <Route>
-            <Rackets path="/rackets"/>
+            <Gyms path="/gyms"/>
           </Route>
           <Route>
-            <Gyms path="/gyms"/>
+            <Rackets path="/rackets"/>
           </Route>
           <Route>
             <h1>Page Not Found</h1>

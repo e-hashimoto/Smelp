@@ -19,7 +19,7 @@ const description = check('description')
     .isLength({ max: 1024 })
     .withMessage('Thanks for sharing, but no more than 1024 characters')
 const brandId = check('brandId')
-    .exists({ checkNull: true || undefined })
+    .exists({ checkFalsy: true || false })
 
 exports.validateCreate = [
     title,
