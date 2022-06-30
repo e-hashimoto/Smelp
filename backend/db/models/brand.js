@@ -18,14 +18,15 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     userId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {});
   Brand.associate = function(models) {
     // associations can be defined here
     Brand.hasMany(models.Gym, { foreignKey: 'brandId'});
     Brand.hasMany(models.Racket, { foreignKey: 'brandId'});
-    Brand.belongsTo(models.User, { foreignKey: 'userId'});
+    // Brand.belongsTo(models.User, { foreignKey: 'userId'});
   };
   return Brand;
 };
