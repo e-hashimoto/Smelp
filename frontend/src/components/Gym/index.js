@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getASingleGym, deleteGym } from "../../store/gyms";
+import { getASingleGym, deleteGym, updateGym } from "../../store/gyms";
 import { useParams, useHistory } from 'react-router-dom';
+import './index.css';
 
 
 function SingleGym() {
@@ -21,18 +22,30 @@ function SingleGym() {
         history.push('/gyms');
     };
 
+    const updateAGym = (id) => {
+        dispatch(updateGym(id));
+        history.push('/gyms');
+    };
+
     if (!gym) return null;
 
     return (
         <div>
             <h1 className="name-of-gym">{gym.title}</h1>
             <h1>Location</h1>
-            <h2>{gym.location}</h2>
+            <h2 className="location">{gym.location}</h2>
             <h2>About the Gym</h2>
-            <h3>{gym.description}</h3>
+            <h3 className="description">{gym.description}</h3>
             <h3>Sponsored By</h3>
-            <h4>{gym.brandId}</h4>
-            <button onSubmit={deleteAGym}>Delete</button>
+            <h4 className="sponsor">{gym.brandId}</h4>
+            <div className="buttons">
+                <div className="update">
+                    <button onClick={updateAGym}>Update</button>
+                </div>
+                <div className="delete">
+                    <button onClick={deleteAGym}>Delete</button>
+                </div>
+            </div>
         </div>
     )
 };

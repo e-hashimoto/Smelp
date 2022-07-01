@@ -1,0 +1,9 @@
+.name-of-gym, .location, .description, .sponsor {
+    color: orange;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    border: 10px green;
+}

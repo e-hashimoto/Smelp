@@ -3,7 +3,6 @@ import { csrfFetch } from "./csrf";
 const GET_GYMS = 'gyms/getAllGyms';
 const GET_ONE_GYM = 'gyms/getOneGym';
 const ADD_ONE = 'gyms/addOneGym';
-// const LOAD_BRANDS = 'brands/LOAD';
 const UPDATE_GYM = 'gyms/updateAGym';
 const DELETE_GYM = 'gyms/deleteAGym';
 
@@ -32,11 +31,6 @@ const deleteAGym = gym => ({
     type: DELETE_GYM,
     gym
 });
-
-// const loadBrands = brands => ({
-//     type: LOAD_BRANDS,
-//     brands
-// });
 
 // Thunks
 
@@ -98,15 +92,6 @@ export const deleteGym = (id) => async dispatch => {
         dispatch(deleteAGym(removedGym.id));
     };
 }
-
-// export const getBrands = () => async dispatch => {
-//     const response = await csrfFetch(`api/brands`);
-//     if (response.ok) {
-//         const list = await response.json();
-//         dispatch(loadBrands(list))
-//     }
-// }
-
 
 // REDUCER
 const initialState = {};
