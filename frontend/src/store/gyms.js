@@ -121,7 +121,7 @@ const gymReducer = (state = initialState, action) => {
             });
             return newState;
         case GET_ONE_GYM:
-            return { ...state, [action.gym.id]: action.gym};
+            return { ...state, [action.gym.gym.id]: action.gym.gym};
         case UPDATE_GYM:
             return {
                 ...state, [action.gym.id]: action.gym
