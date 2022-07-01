@@ -3,7 +3,7 @@ import  './index.css';
 function Brands() {
     return (
         <>
-            <div className=''>
+            <div className='brands-homepage'>
                 <h1>Brands</h1>
             </div>
         </>

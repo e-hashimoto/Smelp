@@ -1,0 +1,9 @@
+.brands-homepage {
+    background-image: url('./brandsLogos/Logo-Yonex.svg');
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    background: fill;
+    background-position: center;
+    background-repeat: no-repeat;
+}
