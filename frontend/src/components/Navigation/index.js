@@ -24,10 +24,12 @@ function Navigation({ isLoaded }) {
   return (
     <div className="header">
       <ul>
-        <NavLink to="/gyms">Gyms</NavLink>
         <NavLink exact to="/">
           Home
         </NavLink>
+        <NavLink to="/gyms">Gyms</NavLink>
+        <NavLink to="/rackets">Rackets</NavLink>
+        <NavLink to="/brands">Brands</NavLink>
         {isLoaded && sessionLinks}
       </ul>
     </div>

@@ -11,7 +11,7 @@ function SingleGym() {
 
     return (
         <div>
-            
+            <h1 >{gym.title}</h1>
         </div>
     )
 };

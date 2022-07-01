@@ -27,6 +27,7 @@ function Gyms() {
                     </div>
                 })}
             </div>
+            <h1>Don't see your gym here already?  Tell us about it!</h1>
             {/* <div>
                 <CreateGymForm />
             </div> */}

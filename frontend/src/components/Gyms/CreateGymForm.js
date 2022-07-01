@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getBrands } from "../../store/gyms";
+import { getBrands, createGym } from "../../store/gyms";
 
 const CreateGymForm = ({hideForm}) => {
     const dispatch = useDispatch();
@@ -32,11 +32,11 @@ const CreateGymForm = ({hideForm}) => {
             brandId
         };
 
-        // let createdGym = await dispatch(createGym(payload));
-        // if (createdGym) {
-        //     history.push(`/gyms/${createdGym.id}`);
-        //     hideForm();
-        // }
+        let createdGym = await dispatch(createGym(payload));
+        if (createdGym) {
+            history.push(`/gyms/${createdGym.id}`);
+            hideForm();
+        }
     };
 
     const handleCancelClick = (e) => {
