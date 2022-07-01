@@ -8,6 +8,7 @@ import Rackets from "./components/Rackets/Rackets";
 import Gyms from "./components/Gyms/AllGyms";
 import Brands from "./components/Brands/index";
 import Error from "./components/PageNotFound/index"
+import SingleGym from "./components/Gym/index";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,8 +25,11 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path={["/gyms"]}>
+          <Route path="/gyms">
             <Gyms />
+          </Route>
+          <Route path="/gyms/:id">
+            <SingleGym />
           </Route>
           <Route path="/rackets">
             <Rackets />

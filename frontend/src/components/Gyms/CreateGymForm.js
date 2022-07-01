@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { getBrands, createGym } from "../../store/gyms";
+import { createGym } from "../../store/gyms";
 
 const CreateGymForm = ({hideForm}) => {
     const dispatch = useDispatch();
@@ -18,9 +18,9 @@ const CreateGymForm = ({hideForm}) => {
     const updateDescription = (e) => setDescription(e.target.value);
     const updateBrandName = (e) => setBrandName(e.target.value);
 
-    useEffect(() => {
-        dispatch(getBrands());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(getBrands());
+    // }, [dispatch]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

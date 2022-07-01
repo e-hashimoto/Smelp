@@ -1,11 +1,11 @@
 import { csrfFetch } from "./csrf";
 
-const GET_GYMS = 'gyms/GET_GYMS';
-const GET_ONE_GYM = 'gyms/GET_ONE_GYM';
-const ADD_ONE = 'gyms/ADD_ONE';
-const LOAD_BRANDS = 'brands/LOAD';
-const UPDATE_GYM = 'gyms/UPDATE_GYM';
-const DELETE_GYM = 'gyms/DELETE_GYM';
+const GET_GYMS = 'gyms/getAllGyms';
+const GET_ONE_GYM = 'gyms/getOneGym';
+const ADD_ONE = 'gyms/addOneGym';
+// const LOAD_BRANDS = 'brands/LOAD';
+const UPDATE_GYM = 'gyms/updateAGym';
+const DELETE_GYM = 'gyms/deleteAGym';
 
 // Action creators
 const getAllGyms = gyms => ({
@@ -16,7 +16,7 @@ const getAllGyms = gyms => ({
 const getOneGym = gym => ({
     type: GET_ONE_GYM,
     gym
-})
+});
 
 const addOneGym = gym => ({
     type: ADD_ONE,
@@ -31,12 +31,12 @@ const updateAGym = gym => ({
 const deleteAGym = gym => ({
     type: DELETE_GYM,
     gym
-})
-
-const loadBrands = brands => ({
-    type: LOAD_BRANDS,
-    brands
 });
+
+// const loadBrands = brands => ({
+//     type: LOAD_BRANDS,
+//     brands
+// });
 
 // Thunks
 
@@ -91,17 +91,23 @@ export const updateGym = (id) => async dispatch => {
 };
 
 // Is this not needed to delete?
-// export const deleteGym = (id) => async dispatch => {
-//     const response = await fetch (`/api/gyms/${id}`)
-// }
-
-export const getBrands = () => async dispatch => {
-    const response = await csrfFetch(`api/brands`);
+export const deleteGym = (id) => async dispatch => {
+    const response = await fetch (`/api/gyms/${id}`, {
+        method: 'DELETE',
+    });
     if (response.ok) {
-        const list = await response.json();
-        dispatch(loadBrands(list))
-    }
+        const removedGym = await response.json();
+        dispatch(deleteAGym(removedGym.id));
+    };
 }
+
+// export const getBrands = () => async dispatch => {
+//     const response = await csrfFetch(`api/brands`);
+//     if (response.ok) {
+//         const list = await response.json();
+//         dispatch(loadBrands(list))
+//     }
+// }
 
 
 // REDUCER
@@ -123,9 +129,7 @@ const gymReducer = (state = initialState, action) => {
                 ...state, [action.gym.id]: action.gym
             };
         case DELETE_GYM:
-            newState = {...state};
-            delete newState[action.gymId];
-            return newState;
+            return delete { ...state, [action.id]: action.id};
         default:
             return state;
     }
