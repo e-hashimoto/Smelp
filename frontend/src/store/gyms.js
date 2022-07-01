@@ -57,10 +57,8 @@ export const createGym = (payload) => async dispatch => {
 export const getGyms = () => async dispatch => {
     const response = await csrfFetch(`/api/gyms`);
 
-    console.log(response);
     if (response.ok) {
         const data = await response.json();
-        console.log(data, "We should see something")
         dispatch(getAllGyms(data));
     }
 };

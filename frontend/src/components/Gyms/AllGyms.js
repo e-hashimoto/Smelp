@@ -9,10 +9,8 @@ import { getGyms } from '../../store/gyms';
 function Gyms() {
     const dispatch = useDispatch();
     const gymsObject = useSelector((state) => state.gyms);
-    console.log('This is the gymsObject', gymsObject);
     const gyms = Object.values(gymsObject);
 
-    console.log('This is the gyms', gyms);
 
     useEffect(() => {
         dispatch(getGyms())

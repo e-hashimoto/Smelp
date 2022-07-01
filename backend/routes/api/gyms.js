@@ -27,8 +27,6 @@ router.post(
             userId
         } = req.body;
 
-        // console.log(req.body, "asl;dfjal;skdfjlaks;dfjkl;asdjfakl;dsjfkl;sad");
-
         const gym = await db.Gym.create({
             title,
             location,
@@ -57,8 +55,6 @@ router.patch(
     async (req, res) => {
         const gym = await db.Gym.findByPk(req.params.id);
 
-        // console.log(gym, "the info should be here")
-
         gym.title = req.body.title;
         gym.location = req.body.location;
         gym.description = req.body.description;
@@ -83,12 +79,10 @@ router.delete(
     '/:id',
     async (req, res) => {
         const id = parseInt(req.params.id, 10);
-        // console.log(id, 'this should be the thing')
         const gym = await db.Gym.findByPk(
             id
         );
 
-        // console.log(gym, "Delete this shit!");
 
         if (gym) {
             await gym.destroy();
