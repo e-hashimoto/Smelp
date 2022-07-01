@@ -7,6 +7,7 @@ import Home from './components/home';
 import Rackets from "./components/Rackets/Rackets";
 import Gyms from "./components/Gyms/AllGyms";
 import Brands from "./components/Brands/index";
+import Error from "./components/PageNotFound/index"
 
 function App() {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ function App() {
             <Brands />
           </Route>
           <Route>
-            <h1>Page Not Found</h1>
+            <Error />
           </Route>
         </Switch>
       )}

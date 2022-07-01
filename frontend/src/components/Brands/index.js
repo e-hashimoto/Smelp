@@ -1,7 +1,9 @@
+import  './index.css';
+
 function Brands() {
     return (
         <>
-            <div>
+            <div className=''>
                 <h1>Brands</h1>
             </div>
         </>

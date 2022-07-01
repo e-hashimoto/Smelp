@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink, Route, useParams } from 'react-router-dom';
 import CreateGymForm from './CreateGymForm';
+import './index.css';
 
 import { getGyms } from '../../store/gyms';
 
@@ -18,7 +19,7 @@ function Gyms() {
     }, [dispatch]);
 
     return (
-        <main>
+        <main className='index-page'>
             <h1>Look at the Gyms!</h1>
             <div>
                 {gyms.map((gym) => {
