@@ -1,0 +1,22 @@
+.error-background {
+    background-image: url('./yutaWatanabe.jpg');
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    background: fill;
+
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.error-text {
+    color: rgba(255, 255, 255, 1);
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* body, html {
+    height: 100%;
+} */

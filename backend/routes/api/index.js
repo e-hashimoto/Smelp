@@ -1,12 +1,24 @@
 const router = require('express').Router();
 const sessionRouter = require('./session');
 const usersRouter = require('./users');
+const gymsRouter = require('./gyms');
+const racketsRouter = require('./rackets');
+const atheletesRouter = require('./athletes');
+const brandsRouter = require('./brands');
 
 const { handleValidationErrors } = require('../../utils/validation');
 
 router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
+
+router.use('/gyms', gymsRouter);
+
+router.use('/rackets', racketsRouter);
+
+router.use('/brands', brandsRouter);
+
+router.use('/athletes', atheletesRouter);
 
 router.post('/test', (req, res) => {
   res.json({ requestBody: req.body });

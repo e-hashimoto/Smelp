@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import SignupForm from "./components/SignUpFormModal/SignUpForm";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from './components/home';
-import Rackets from "./components/Rackets";
-import Gyms from "./components/Gyms";
+import Rackets from "./components/Rackets/Rackets";
+import Gyms from "./components/Gyms/AllGyms";
+import Brands from "./components/Brands/index";
+import Error from "./components/PageNotFound/index"
 
 function App() {
   const dispatch = useDispatch();
@@ -23,14 +24,17 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route>
-            <SignupForm path="/signup"/>
+          <Route path={["/gyms"]}>
+            <Gyms />
+          </Route>
+          <Route path="/rackets">
+            <Rackets />
+          </Route>
+          <Route path="/brands">
+            <Brands />
           </Route>
           <Route>
-            <Rackets path="/rackets"/>
-          </Route>
-          <Route>
-            <Gyms path="/gyms"/>
+            <Error />
           </Route>
         </Switch>
       )}

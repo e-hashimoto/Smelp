@@ -15,11 +15,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     accomplishments:{
       type: DataTypes.STRING(1024)
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {});
   Athlete.associate = function(models) {
     // associations can be defined here
-    Athlete.belongsTo(models.Racket, {foreignKey: 'racketId'})
+    Athlete.belongsTo(models.Racket, {foreignKey: 'racketId'});
+    Athlete.belongsTo(models.User, {foreignKey: 'userId'});
   };
   return Athlete;
 };

@@ -20,6 +20,12 @@ module.exports = {
       description: {
         type: Sequelize.STRING(512)
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
