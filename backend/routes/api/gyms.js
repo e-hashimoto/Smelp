@@ -27,7 +27,7 @@ router.post(
             userId
         } = req.body;
 
-        console.log(req.body, "asl;dfjal;skdfjlaks;dfjkl;asdjfakl;dsjfkl;sad");
+        // console.log(req.body, "asl;dfjal;skdfjlaks;dfjkl;asdjfakl;dsjfkl;sad");
 
         const gym = await db.Gym.create({
             title,
@@ -57,7 +57,7 @@ router.patch(
     async (req, res) => {
         const gym = await db.Gym.findByPk(req.params.id);
 
-        console.log(gym, "the info should be here")
+        // console.log(gym, "the info should be here")
 
         gym.title = req.body.title;
         gym.location = req.body.location;

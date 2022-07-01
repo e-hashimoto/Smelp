@@ -14,7 +14,7 @@ function Gyms() {
     console.log(gyms);
 
     useEffect(() => {
-        dispatch(getGyms)
+        dispatch(getGyms())
     }, [dispatch]);
 
     return (
@@ -22,9 +22,8 @@ function Gyms() {
             <h1>Look at the Gyms!</h1>
             <div>
                 {gyms.map((gym) => {
-                    <div key={gym.id}>
-                        <h2>{gym.title}</h2>
-                        <NavLink to={`/gyms/${gym.id}`}/>
+                    return <div key={gym.id}>
+                        <NavLink exact to={`/gyms/${gym.id}`}>{gym.title}</NavLink>
                     </div>
                 })}
             </div>

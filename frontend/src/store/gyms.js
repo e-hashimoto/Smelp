@@ -1,6 +1,7 @@
 import { csrfFetch } from "./csrf";
 
-const GET_GYMS = 'gyms/GET_GYMS'
+const GET_GYMS = 'gyms/GET_GYMS';
+const GET_ONE_GYM = 'gyms/GET_ONE_GYM';
 const ADD_ONE = 'gyms/ADD_ONE';
 const LOAD_BRANDS = 'brands/LOAD';
 
@@ -9,6 +10,11 @@ const getAllGyms = gyms => ({
     type: GET_GYMS,
     gyms
 });
+
+const getOneGym = gym => ({
+    type: GET_ONE_GYM,
+    gym
+})
 
 const addOneGym = gym => ({
     type: ADD_ONE,
@@ -47,6 +53,15 @@ export const getGyms = () => async dispatch => {
     }
 };
 
+export const getASingleGym = (id) => async dispatch => {
+    const response = await csrfFetch(`/api/gyms/${id}`);
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(getOneGym(data));
+        return data;
+    }
+};
+
 export const getBrands = () => async dispatch => {
     const response = await csrfFetch(`api/brands`);
     if (response.ok) {
@@ -68,24 +83,8 @@ const gymReducer = (state = initialState, action) => {
                 newState[gym.id] = gym;
             });
             return newState;
-        // case ADD_ONE:
-        //     if(!state[action.gym.id]) {
-        //         const newState = {
-        //             ...state,
-        //             [action.gym.id]: action.gym
-        //         };
-        //         const gymList = newState.list.map(id => newState[id]);
-        //         gymList.push(action.gym);
-        //         newState.list = gymList;
-        //         return newState;
-        //     }
-        //     return {
-        //         ...state,
-        //         [action.gym.id]: {
-        //             ...state[action.gym.id],
-        //             ...action.gym
-        //         }
-        //     };
+        case GET_ONE_GYM:
+            return { ...state, [action.gym.id]: action.gym}
         default:
             return state;
     }

@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Home from './components/home';
-import Rackets from "./components/Rackets";
+import Rackets from "./components/Rackets/Rackets";
 import Gyms from "./components/Gyms/AllGyms";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/gyms">
+          <Route path={["/gyms"]}>
             <Gyms />
           </Route>
           <Route path="/rackets">
