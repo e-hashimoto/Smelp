@@ -1,6 +1,4 @@
 const express = require('express');
-// const asyncHandler = require('express-async-handler');
-
 const router = express.Router();
 const db = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -43,6 +41,7 @@ router.post(
 
 router.get('/:id(\\d+)', async(req, res) => {
     const gymId = parseInt(req.params.id, 10);
+    console.log('What is so different from this one?', gymId)
     const gym = await db.Gym.findByPk(gymId);
     if (gym) {
         return res.json({gym})
