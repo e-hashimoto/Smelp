@@ -6,7 +6,7 @@ import { createGym } from "../../store/gyms";
 const CreateGymForm = ({hideForm}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const brands = useSelector(state => state.brand.names)
+    // const brands = useSelector(state => state.brand.names)
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
@@ -18,9 +18,9 @@ const CreateGymForm = ({hideForm}) => {
     const updateDescription = (e) => setDescription(e.target.value);
     const updateBrandName = (e) => setBrandName(e.target.value);
 
-    // useEffect(() => {
-    //     dispatch(getBrands());
-    // }, [dispatch]);
+    useEffect(() => {
+
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,12 +66,6 @@ const CreateGymForm = ({hideForm}) => {
                     required
                     value={description}
                     onChange={updateDescription}/>
-                <select onChange={updateBrandName} value={null} placeholder="Sponsored By">
-                    <option value={null}></option>
-                    {brands.map(brand =>
-                        <option key={brand.id} value={brand.id}>{brand.name}</option>
-                    )}
-                </select>
                 <button type="submit">Create New Gym</button>
                 <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>

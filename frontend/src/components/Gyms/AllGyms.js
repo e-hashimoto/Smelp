@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link, Route, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CreateGymForm from './CreateGymForm';
 import './index.css';
 
@@ -31,9 +31,9 @@ function Gyms() {
                 })}
             </div>
             <h1>Don't see your gym here already?  Tell us about it!</h1>
-            {/* <div>
+            <div>
                 <CreateGymForm />
-            </div> */}
+            </div>
         </main>
     )
 };
