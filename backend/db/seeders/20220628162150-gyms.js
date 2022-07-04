@@ -69,7 +69,7 @@ module.exports = {
     {
       title: 'Arizona Badminton Center (AZBC)',
       location: '2150 W Broadway, Suite 107, Mesa AZ 85202',
-      description: 'Courts available: 15. Hours of operation: Mon - Sun: 8:00am - 2:00am. LABC is the state of art badminton facility, which offers values, convenience and amenities beyond ordinary clubs. We always put in mind the comfort and excitement of our members. Our building, flooring, and lighting were planned and custom-built for badminton and comfort of every players of all levels.',
+      description: "Courts available: 4. Hours of operation: Mon - Fri: 2:00 pm - 10:00 pm, Sat - Sun: 12:00 pm - 6:00 pm. After years of dreaming and searching we established the first fully dedicated badminton-specific facility in Arizona history officially opening February 14, 2012.  This year we are celebrating our 10th anniversary!",
       brandId: 2,
       userId: 1
     },

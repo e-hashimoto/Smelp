@@ -6,6 +6,7 @@ const ADD_ONE = 'gyms/addOneGym';
 const UPDATE_GYM = 'gyms/updateAGym';
 const DELETE_GYM = 'gyms/deleteAGym';
 
+
 // Action creators
 const getAllGyms = gyms => ({
     type: GET_GYMS,
@@ -31,7 +32,6 @@ const deleteAGym = gym => ({
     type: DELETE_GYM,
     gym
 });
-
 // Thunks
 
 export const createGym = (payload) => async dispatch => {
@@ -94,7 +94,7 @@ export const deleteGym = (id) => async dispatch => {
         const removedGym = await response.json();
         dispatch(deleteAGym(removedGym));
     };
-}
+};
 
 // REDUCER
 const initialState = {};

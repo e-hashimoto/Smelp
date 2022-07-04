@@ -3,10 +3,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
-// const gymValidations = require('../../utils/gym');
 const { validationResult, check } = require('express-validator');
-
-// const { check } = require("express-validator");
 
 const gymValidations = [
     check('title')
@@ -28,6 +25,26 @@ const gymValidations = [
         .withMessage('Thanks for sharing, but no more than 1024 characters'),
     check('brandId')
         .exists({ checkFalsy: true || false })
+];
+
+const reviewValidations = [
+    check('gymId')
+        .exists({ checkFalsy: true }),
+    check('userId')
+        .exists({ checkFalsy: true }),
+    check('title')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a title for your review.')
+        .isLength({ max: 50 })
+        .withMessage('Title cannot be longer than 50 characters.'),
+    check('rating')
+        .exists({ checkFalsy: true })
+        .withMessage('Please provide a rating for your review.'),
+    check('description')
+        .exists({ checkFalsy: true })
+        .withMessage('Please tell us about your experience.')
+        .isLength({ max: 500 })
+        .withMessage('Please keep your review no longer than 500 characters.')
 ]
 
 router.get('/', async(req, res) => {
@@ -113,6 +130,55 @@ router.delete(
             await gym.destroy();
             return res.json({ message: 'Gym successfully deleted.'});
         }
+    }
+);
+
+router.get(
+    '/:id(\\d+)/reviews',
+    async(req, res) => {
+        const id = parseInt(req.params.id, 10);
+        console.log(id, '--------------');
+        const reviews = await db.Review.findAll({
+            where: { gymId: id },
+            include: db.User
+        });
+        console.log(reviews, 'We should see plenty of reviews here!!!')
+        return res.json(reviews);
+    }
+);
+
+router.post(
+    '/:id(\\d+)/reviews',
+    reviewValidations,
+    async(req, res) => {
+        const { gymId, userId, title, rating, description } = req.body;
+        const reviewObj = await db.Review.create({
+            gymId,
+            userId,
+            title,
+            rating,
+            description
+        });
+        const findUser = await db.User.findByPk(userId);
+
+        reviewObj.dataValues['User']=findUser.dataValues
+
+        return res.json(reviewObj);
+    }
+);
+
+router.delete(
+    '/:id(\\d+)/reviews/:reviewId(\\d+)',
+    async(req, res) => {
+        const reviewId = parseInt(req.params.reviewId, 10);
+        const review = await db.Review.findByPk(reviewId);
+        if (!review) {
+            return res.status(404).json({
+                message: 'Review not found',
+            });
+        }
+        await review.destroy();
+        return res.json({ message: 'Review deleted!' });
     }
 );
 

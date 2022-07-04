@@ -1,9 +1,15 @@
-import { useEffect } from "react";
+import {
+    loadReviews,
+    addAReview,
+    deleteAReview,
+    clearReviews
+} from '../../store/reviews';
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getASingleGym, deleteGym, updateGym } from "../../store/gyms";
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useHistory, Link } from 'react-router-dom';
 import './index.css';
-import ShuttleRating from "../ShuttleRating";
+
 
 
 function SingleGym() {
@@ -12,16 +18,30 @@ function SingleGym() {
     const { id } = useParams();
 
     const gym = useSelector((state) => state.gyms[id]);
-    // const account = useSelector((state) => state.session.user);
+    // const user = useSelector((state) => state.session.user);
+    // const reviews = Object.values(useSelector((state) => state.comments));
+    // const [review, setReview] = useState([]);
+    // const [isLoaded, setLoaded] = useState(false);
+    // const [validationErrors, setValidationErrors] = useState([]);
 
-    useEffect(() => {
-        dispatch(getASingleGym(id))
-    }, [dispatch, id]);
+    // useEffect(() => {
+    //     dispatch(getASingleGym(id))
+    //         .then(async () => await dispatch(loadReviews(id)))
+    //         .then(() => setLoaded(true));
+
+    //     return () => {
+    //         dispatch(clearReviews());
+    //     };
+    // }, [id, dispatch]);
 
     const deleteAGym = (id) => {
         dispatch(deleteGym(id));
         history.push('/gyms');
     };
+
+    // const notLoggedIn = () => {
+    //     if (!user) history.push('/');
+    // };
 
     const updateAGym = (id) => {
         dispatch(updateGym(id));
@@ -29,6 +49,8 @@ function SingleGym() {
     };
 
     if (!gym) return null;
+
+
 
     return (
         <div>

@@ -18,3 +18,5 @@ function EditGym() {
         dispatch()
     })
 }
+
+export default EditGym;
