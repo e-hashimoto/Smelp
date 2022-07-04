@@ -1,11 +1,34 @@
+
 const express = require('express');
 const router = express.Router();
 const db = require('../../db/models');
 const { handleValidationErrors } = require('../../utils/validation');
-const gymValidations = require('../../utils/gym');
-const { validationResult } = require('express-validator');
+// const gymValidations = require('../../utils/gym');
+const { validationResult, check } = require('express-validator');
 
 // const { check } = require("express-validator");
+
+const gymValidations = [
+    check('title')
+        .notEmpty()
+        .withMessage('Cannot be empty')
+        .exists({ checkFalsy: true })
+        .withMessage('Gym must be unique')
+        .isLength({ max: 55 })
+        .withMessage('Gym title cannot be more than 55 characters long'),
+    check('location')
+        .notEmpty()
+        .withMessage('Must provide a location')
+        .isLength({ max: 64 })
+        .withMessage('Location cannot be more than 64 characters long'),
+    check('description')
+        .notEmpty()
+        .withMessage('Please describe this gym')
+        .isLength({ max: 1024 })
+        .withMessage('Thanks for sharing, but no more than 1024 characters'),
+    check('brandId')
+        .exists({ checkFalsy: true || false })
+]
 
 router.get('/', async(req, res) => {
     const allGyms = await db.Gym.findAll();
@@ -14,9 +37,10 @@ router.get('/', async(req, res) => {
 
 router.post(
     '/',
-    gymValidations.validateCreate,
+    gymValidations,
     handleValidationErrors,
     async(req, res) => {
+        console.log('           ', 'working')
         const {
             title,
             location,
@@ -25,13 +49,14 @@ router.post(
             userId
         } = req.body;
 
-        const gym = await db.Gym.create({
+        const gym = await db.Gym.build({
             title,
             location,
             description,
             brandId,
             userId
     });
+
 
     if (gym) {
         await gym.save()
@@ -48,9 +73,9 @@ router.get('/:id(\\d+)', async(req, res) => {
     }
 });
 
-router.patch(
+router.put(
     '/:id(\\d+)',
-    gymValidations.validateUpdate,
+    gymValidations,
     async (req, res) => {
         const gym = await db.Gym.findByPk(req.params.id);
 
@@ -77,7 +102,8 @@ router.patch(
 router.delete(
     '/:id',
     async (req, res) => {
-        const id = parseInt(req.params.id, 10);
+        const id = req.params.id;
+        console.log(id, 'This is the id of something.')
         const gym = await db.Gym.findByPk(
             id
         );

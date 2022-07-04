@@ -9,12 +9,13 @@ const routes = require("./routes");
 const { environment } = require("./config");
 const isProduction = environment === "production";
 const { ValidationError } = require("sequelize");
+const { urlencoded } = require("express");
 
 const app = express();
 app.use(morgan("dev"));
 app.use(cookieParser());
 app.use(express.json());
-
+app.use(express.urlencoded({extended: false}));
 
 
 // Security Middleware
@@ -32,15 +33,15 @@ app.use(
 
 // Set the _csrf token and create req.csrfToken method
 // when testing postman, comment out to avoid throwing errors
-// app.use(
-//   csurf({
-//     cookie: {
-//       secure: isProduction,
-//       sameSite: isProduction && "Lax",
-//       httpOnly: true,
-//     },
-//   })
-// );
+app.use(
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true,
+    },
+  })
+);
 
 app.use(routes);
 

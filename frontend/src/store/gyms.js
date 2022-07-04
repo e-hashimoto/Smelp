@@ -35,11 +35,14 @@ const deleteAGym = gym => ({
 // Thunks
 
 export const createGym = (payload) => async dispatch => {
+    console.log('                        working')
     const response = await csrfFetch('/api/gyms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     });
+
+    console.log(' Hi ', response);
 
     if (response.ok) {
         const gym = await response.json();
@@ -68,7 +71,7 @@ export const getASingleGym = (id) => async dispatch => {
 
 export const updateGym = (id) => async dispatch => {
     const response = await fetch(`/api/gyms/${id}`, {
-        method: 'PATCH',
+        method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -89,7 +92,7 @@ export const deleteGym = (id) => async dispatch => {
     });
     if (response.ok) {
         const removedGym = await response.json();
-        dispatch(deleteAGym(removedGym.id));
+        dispatch(deleteAGym(removedGym));
     };
 }
 

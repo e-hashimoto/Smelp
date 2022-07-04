@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createGym } from "../../store/gyms";
+// import { csrfFetch } from "../../store/csrf";
 
 const CreateGymForm = ({hideForm}) => {
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ const CreateGymForm = ({hideForm}) => {
             title,
             location,
             description,
-            brandId
+            brandId: 1
         };
 
         let createdGym = await dispatch(createGym(payload));
@@ -37,6 +38,13 @@ const CreateGymForm = ({hideForm}) => {
             history.push(`/gyms/${createdGym.id}`);
             hideForm();
         }
+        // const response = await csrfFetch('/api/gyms', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(payload)
+        // });
+
+        console.log('                     This should be working')
     };
 
     const handleCancelClick = (e) => {
@@ -66,6 +74,9 @@ const CreateGymForm = ({hideForm}) => {
                     required
                     value={description}
                     onChange={updateDescription}/>
+                <select>
+                    1
+                </select>
                 <button type="submit">Create New Gym</button>
                 <button type="button" onClick={handleCancelClick}>Cancel</button>
             </form>
