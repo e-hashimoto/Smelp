@@ -73,7 +73,7 @@ router.get('/:id(\\d+)', async(req, res) => {
     }
 });
 
-router.put(
+router.patch(
     '/:id(\\d+)',
     gymValidations,
     async (req, res) => {
