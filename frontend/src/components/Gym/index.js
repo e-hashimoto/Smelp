@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getASingleGym, deleteGym, updateGym } from "../../store/gyms";
 import { useParams, useHistory } from 'react-router-dom';
 import './index.css';
+import ShuttleRating from "../ShuttleRating";
 
 
 function SingleGym() {
@@ -38,6 +39,10 @@ function SingleGym() {
             <h3 className="description">{gym.description}</h3>
             <h3>Sponsored By</h3>
             <h4 className="sponsor">{gym.brandId}</h4>
+            {/* <div>
+                <ShuttleRating />
+            </div> */}
+
             <div className="buttons">
                 <div className="update">
                     <button onClick={updateAGym}>Update</button>

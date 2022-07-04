@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/e-hashimoto/Smelp/issues"
   },
-  "homepage": "https://github.com/e-hashimoto/Smelp#readme"
+  "homepage": "https://github.com/e-hashimoto/Smelp#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-solid-svg-icons": "^6.1.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "react-icons": "^4.4.0"
+  }
 }
