@@ -140,7 +140,7 @@ router.get(
         console.log(id, '--------------');
         const reviews = await db.Review.findAll({
             where: { gymId: id },
-            include: db.User
+            // include: db.User
         });
         console.log(reviews, 'We should see plenty of reviews here!!!')
         return res.json(reviews);
