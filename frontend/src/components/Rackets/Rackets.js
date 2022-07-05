@@ -19,7 +19,7 @@ function Rackets() {
 
 
     return (
-        <div className="index-racket-page">
+        <main className="index-racket-page">
             <h1>Rackets</h1>
             <div>
                 {rackets.map((racket) => {
@@ -32,7 +32,7 @@ function Rackets() {
             <div>
                 <CreateRacketForm />
             </div>
-        </div>
+        </main>
     )
 }
 

@@ -81,6 +81,8 @@ const racketReducer = (state  = initialState, action) => {
             return newState;
         case LOAD_RACKET:
             return { ...state, [action.racket.racket.id]: action.racket.racket};
+        // case ADD_RACKET:
+        //     return
         case DELETE_RACKET:
             return delete { ...state, [action.id]: action.id };
         default:

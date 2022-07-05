@@ -23,7 +23,8 @@ const CreateRacketForm = () => {
         const  payload = {
             name,
             brandId: 1,
-            description
+            description,
+            userId: 1
         };
 
         let createdRacket = await dispatch(createRacket(payload));
@@ -31,34 +32,35 @@ const CreateRacketForm = () => {
             history.push(`/rackets/${createdRacket.id}`);
         };
 
+    }
         const handleCancelClick = (e) => {
             e.preventDefault();
+            // hideForm();
         };
 
-        return (
-            <section className="new-racket">
-                <h1>Add a Racket to our Database</h1>
-                <form className="create-racket-form" onSubmit={handleSubmit}>
-                    <input
-                        type="string"
-                        placeholder="Name"
-                        required
-                        value={name}
-                        onChange={updateName}
-                    />
-                    <input
-                        type="string"
-                        placeholder="Description"
-                        required
-                        value={description}
-                        onChange={updateDescription}
-                    />
-                    <button type="submit">Add Racket</button>
-                    <button type="button" onClick={handleCancelClick}>Cancel</button>
-                </form>
-            </section>
-        )
-    }
+    return (
+        <section className="new-racket">
+            <h1>Add a Racket to our Database</h1>
+            <form className="create-racket-form" onSubmit={handleSubmit}>
+                <input
+                    type="string"
+                    placeholder="Name"
+                    required
+                    value={name}
+                    onChange={updateName}
+                />
+                <input
+                    type="string"
+                    placeholder="Description"
+                    required
+                    value={description}
+                    onChange={updateDescription}
+                />
+                <button type="submit">Add Racket</button>
+                <button type="button" onClick={handleCancelClick}>Cancel</button>
+            </form>
+        </section>
+    )
 };
 
 export default CreateRacketForm;
