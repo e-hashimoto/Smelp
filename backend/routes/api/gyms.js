@@ -91,7 +91,7 @@ router.get('/:id(\\d+)', async(req, res) => {
 });
 
 router.patch(
-    '/:id(\\d+)',
+    '/:id(\\d+)/edit',
     gymValidations,
     async (req, res) => {
         const gym = await db.Gym.findByPk(req.params.id);

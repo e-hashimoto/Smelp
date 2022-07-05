@@ -19,7 +19,7 @@ function SingleGym() {
 
     const gym = useSelector((state) => state.gyms[id]);
     // const user = useSelector((state) => state.session.user);
-    // const reviews = Object.values(useSelector((state) => state.comments));
+    // const reviews = Object.values(useSelector((state) => state.reviews));
     // const [review, setReview] = useState([]);
     // const [isLoaded, setLoaded] = useState(false);
     // const [validationErrors, setValidationErrors] = useState([]);
@@ -61,17 +61,45 @@ function SingleGym() {
             <h3 className="description">{gym.description}</h3>
             <h3>Sponsored By</h3>
             <h4 className="sponsor">{gym.brandId}</h4>
-            {/* <div>
-                <ShuttleRating />
+            {/* <h1>Reviews</h1>
+            <div className="reviews">
+                {reviews &&
+                    reviews.map((review) => {
+                        return (
+                            <div className='new-review-div' key={review.id}>
+                                <p className='p-tag-reviews'>
+                                    {review?.review}
+                                </p>
+                                <p className='p-tag-username'>
+                                    {review?.User?.username}
+                                </p>
+                                <div className='delete-button-container'>
+                                    {review?.User?.username === user?.username ? (
+                                        <button
+                                            className='delete-review-button'
+                                            onClick={() =>
+                                                dispatch(
+                                                    deleteAReview(id, review.id)
+                                                ).then(() => dispatch(loadReviews(id)))
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                            </div>
+                        )
+                    })}
             </div> */}
-
             <div className="buttons">
-                <div className="update">
-                    <button onClick={updateAGym}>Update</button>
-                </div>
-                <div className="delete">
-                    <button onClick={deleteAGym}>Delete</button>
-                </div>
+                    <div className="update">
+                        <button onClick={updateAGym}>Update</button>
+                    </div>
+                    <div className="delete">
+                        <button onClick={deleteAGym}>Delete</button>
+                    </div>
             </div>
         </div>
     )
