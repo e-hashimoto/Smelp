@@ -33,11 +33,19 @@ function Home() {
           coaches.
         </p>
       </div>
-      <div>
+      <div style={{ display: "flex", flexDirection: "column"}}>
         Links
-        <a href="https://www.youtube.com/user/TheHashimoto5" />
-        <a href="https://github.com/e-hashimoto" />
-        <a href="https://www.linkedin.com/in/exequiel-hashimoto/" />
+        <ul>
+          <div>
+            <a href="https://www.youtube.com/user/TheHashimoto5">YouTube</a>
+          </div>
+          <div>
+            <a href="https://github.com/e-hashimoto">GitHub</a>
+          </div>
+          <div>
+            <a href="https://www.linkedin.com/in/exequiel-hashimoto/">LinkedIn</a>
+          </div>
+        </ul>
       </div>
     </div>
   );
