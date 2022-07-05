@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { createGym } from "../../store/gyms";
 // import { csrfFetch } from "../../store/csrf";
 
-const CreateGymForm = ({hideForm}) => {
+const CreateGymForm = () => {
     const dispatch = useDispatch();
     const history = useHistory();
     // const brands = useSelector(state => state.brand.names)
@@ -36,7 +36,6 @@ const CreateGymForm = ({hideForm}) => {
         let createdGym = await dispatch(createGym(payload));
         if (createdGym) {
             history.push(`/gyms/${createdGym.id}`);
-            hideForm();
         }
         // const response = await csrfFetch('/api/gyms', {
         //     method: 'POST',
@@ -49,7 +48,6 @@ const CreateGymForm = ({hideForm}) => {
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        hideForm();
     }
 
     return (
