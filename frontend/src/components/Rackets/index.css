@@ -1,5 +1,5 @@
 .index-racket-page {
-    background-image: url('../Pictures/rackets/astrox99pro.jpg');
+    background-image: url('./astrox99pro.jpg');
     background-size: cover;
     height: 100vh;
     width: 100vw;
