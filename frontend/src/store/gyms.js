@@ -71,7 +71,7 @@ export const getASingleGym = (id) => async dispatch => {
 
 export const updateGym = (id) => async dispatch => {
     const response = await fetch(`/api/gyms/${id}`, {
-        method: 'PUT',
+        method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
