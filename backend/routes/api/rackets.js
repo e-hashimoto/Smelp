@@ -63,7 +63,7 @@ router.delete('/:id', async(req, res) => {
 
     if (racket) {
         await racket.destroy();
-        return res.json({ message: 'Racket successfully deleted'});
+        res.json(id);
     };
 });
 
