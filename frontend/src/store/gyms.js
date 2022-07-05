@@ -69,13 +69,14 @@ export const getASingleGym = (id) => async dispatch => {
     }
 };
 
-export const updateGym = (id) => async dispatch => {
-    const response = await fetch(`/api/gyms/${id}`, {
+export const updateGym = (data) => async dispatch => {
+    console.log(data, 'Should be getting something!!!');
+    const response = await fetch(`/api/gyms/${data.gymId}/edit`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(id)
+        body: JSON.stringify(data)
     });
 
     if (response.ok) {
@@ -92,7 +93,7 @@ export const deleteGym = (id) => async dispatch => {
     });
     if (response.ok) {
         const removedGym = await response.json();
-        dispatch(deleteAGym(removedGym));
+        dispatch(deleteAGym(removedGym.id));
     };
 };
 

@@ -9,6 +9,9 @@ function EditGym({ hideForm }) {
     const [description, setDescription] = useState("");
     const [brandId, setBrandId] = useState(1);
     // const [errors, setErrors] = useState([]);
+    const url = useParams();
+
+    const gymId = url.id;
 
     const dispatch = useDispatch();
 
@@ -25,6 +28,7 @@ function EditGym({ hideForm }) {
         e.preventDefault();
 
         const payload = {
+            gymId,
             title,
             location,
             description,
@@ -33,13 +37,13 @@ function EditGym({ hideForm }) {
 
         let updatedGym = await dispatch(updateGym(payload));
         if (updatedGym) {
-            hideForm();
+            // hideForm();
         }
     };
 
     const handleCancelClick = (e) => {
         e.preventDefault();
-        hideForm();
+        // hideForm();
     };
 
     return (

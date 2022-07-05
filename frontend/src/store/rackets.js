@@ -2,6 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_RACKETS = 'rackets/loadRackets';
 const LOAD_RACKET = 'rackets/loadRacket';
+const ADD_RACKET = 'rackets/addRacket';
+const DELETE_RACKET = 'rackets/deleteRacket';
 
 const loadRackets = rackets => ({
     type: LOAD_RACKETS,
@@ -12,6 +14,16 @@ const loadRacket = racket => ({
     type: LOAD_RACKET,
     racket
 });
+
+const addRacket = racket => ({
+    type: ADD_RACKET,
+    racket
+});
+
+const deleteRacket = racket => ({
+    type: DELETE_RACKET,
+    racket
+})
 
 export const getRackets = () => async dispatch => {
     const response = await csrfFetch(`api/rackets`);
@@ -30,6 +42,30 @@ export const getRacket = (id) => async dispatch => {
     }
 };
 
+export const createRacket = (payload) => async dispatch => {
+    const response = await csrfFetch('/api/rackets', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    });
+
+    if (response.ok) {
+        const racket = await response.json();
+        dispatch(addRacket(racket));
+        return racket;
+    }
+};
+
+export const removeRacket = (id) => async dispatch => {
+    const response = await fetch (`/api/rackets/${id}`, {
+        method: 'DELETE',
+    });
+    if (response.ok) {
+        const deletedRacket = await response.json();
+        dispatch(deleteRacket(deletedRacket.id));
+    }
+}
+
 // Reducer
 
 const initialState = {};
@@ -45,6 +81,8 @@ const racketReducer = (state  = initialState, action) => {
             return newState;
         case LOAD_RACKET:
             return { ...state, [action.racket.racket.id]: action.racket.racket};
+        case DELETE_RACKET:
+            return delete { ...state, [action.id]: action.id };
         default:
             return state;
     };

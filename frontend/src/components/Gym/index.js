@@ -17,41 +17,19 @@ function SingleGym() {
     const dispatch = useDispatch();
     const history = useHistory();
     const { id } = useParams();
-
     const gym = useSelector((state) => state.gyms[id]);
-    // const user = useSelector((state) => state.session.user);
-    // const reviews = Object.values(useSelector((state) => state.reviews));
-    // const [review, setReview] = useState([]);
-    // const [isLoaded, setLoaded] = useState(false);
-    // const [validationErrors, setValidationErrors] = useState([]);
 
-    // useEffect(() => {
-    //     dispatch(getASingleGym(id))
-    //         .then(async () => await dispatch(loadReviews(id)))
-    //         .then(() => setLoaded(true));
 
-    //     return () => {
-    //         dispatch(clearReviews());
-    //     };
-    // }, [id, dispatch]);
+    useEffect(() => {
+        dispatch(getASingleGym(id));
+    }, [id, dispatch]);
 
-    // const deleteAGym = (id) => {
-    //     dispatch(deleteGym(id));
-    //     history.push('/gyms');
-    // };
-
-    // const notLoggedIn = () => {
-    //     if (!user) history.push('/');
-    // };
-
-    // const updateAGym = (id) => {
-    //     dispatch(updateGym(id));
-    //     history.push('/gyms');
-    // };
+    const deleteAGym = (id) => {
+        dispatch(deleteGym(id));
+        history.push(`/gyms`);
+    };
 
     if (!gym) return null;
-
-
 
     return (
         <div>
@@ -62,49 +40,10 @@ function SingleGym() {
             <h3 className="description">{gym.description}</h3>
             <h3>Sponsored By</h3>
             <h4 className="sponsor">{gym.brandId}</h4>
-            {/* <h1>Reviews</h1>
-            <div className="reviews">
-                {reviews &&
-                    reviews.map((review) => {
-                        return (
-                            <div className='new-review-div' key={review.id}>
-                                <p className='p-tag-reviews'>
-                                    {review?.review}
-                                </p>
-                                <p className='p-tag-username'>
-                                    {review?.User?.username}
-                                </p>
-                                <div className='delete-button-container'>
-                                    {review?.User?.username === user?.username ? (
-                                        <button
-                                            className='delete-review-button'
-                                            onClick={() =>
-                                                dispatch(
-                                                    deleteAReview(id, review.id)
-                                                ).then(() => dispatch(loadReviews(id)))
-                                            }
-                                        >
-                                            Delete
-                                        </button>
-                                    ) : (
-                                        <></>
-                                    )}
-                                </div>
-                            </div>
-                        )
-                    })}
-            </div> */}
-            {/* <div className="buttons">
-                    <div className="update">
-                        <button>Update</button>
-                    </div>
-                    <div className="delete">
-                        <button>Delete</button>
-                    </div>
-            </div> */}
             <div>
                 <EditGym />
             </div>
+            <button onClick={() => deleteAGym(id)}>Delete</button>
         </div>
     )
 };

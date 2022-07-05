@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRacket, getRackets } from "../../store/rackets";
 import { Link } from 'react-router-dom';
+import CreateRacketForm from "./CreateRacketForm";
 
 function Rackets() {
     const dispatch = useDispatch();
@@ -26,6 +27,10 @@ function Rackets() {
                         <Link exact to={`/rackets/${racket.id}`} onClick={() => handleClick(racket.id)}>{racket.name}</Link>
                     </div>
                 })}
+            </div>
+            <h1>Tell us about your favorite racket!</h1>
+            <div>
+                <CreateRacketForm />
             </div>
         </div>
     )

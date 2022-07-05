@@ -55,4 +55,16 @@ router.get('/:id(\\d+)', async(req, res) => {
     }
 });
 
+router.delete('/:id', async(req, res) => {
+    const id = req.params.id;
+    const racket = await db.Racket.findByPk(
+        id
+    );
+
+    if (racket) {
+        await racket.destroy();
+        return res.json({ message: 'Racket successfully deleted'});
+    };
+});
+
 module.exports = router;
