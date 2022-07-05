@@ -3,12 +3,16 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import gymReducer from "./gyms";
 import brandReducer from "./brands";
+import reviewsReducer from "./reviews";
+import racketReducer from "./rackets";
 
 const rootReducer = combineReducers({
   // add reducer functions here
   session: sessionReducer,
   gyms: gymReducer,
   brands: brandReducer,
+  reviews: reviewsReducer,
+  rackets: racketReducer
 });
 
 let enhancer;

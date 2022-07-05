@@ -32,9 +32,12 @@ function App() {
           <Route path="/gyms/:id">
             <SingleGym />
           </Route>
-          <Route path="/rackets">
+          <Route exact path="/rackets">
             <Rackets />
           </Route>
+          {/* <Route path="/rackets/:id">
+            <SingleRacket />
+          </Route> */}
           <Route exact path="/brands">
             <Brands />
           </Route>
