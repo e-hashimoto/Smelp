@@ -30,7 +30,7 @@ const updateAGym = gym => ({
 
 const deleteAGym = gym => ({
     type: DELETE_GYM,
-    gym
+    payload: gym
 });
 // Thunks
 
@@ -92,8 +92,8 @@ export const deleteGym = (id) => async dispatch => {
         method: 'DELETE',
     });
     if (response.ok) {
-        const removedGym = await response.json();
-        dispatch(deleteAGym(removedGym.id));
+        // const removedGym = await response.json();
+        dispatch(deleteAGym(id));
     };
 };
 
@@ -116,7 +116,10 @@ const gymReducer = (state = initialState, action) => {
                 ...state, [action.gym.gym.id]: {...action.gym.gym}
             };
         case DELETE_GYM:
-            return delete { ...state, [action.id]: action.id};
+            newState = { ...state };
+            delete newState[action.payload];
+            return newState;
+            // return delete { ...state, [action.id]: action.id};
         default:
             return state;
     }
