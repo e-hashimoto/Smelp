@@ -3,3 +3,9 @@
     justify-content: space-between;
     padding: 10px;
 }
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
+}
