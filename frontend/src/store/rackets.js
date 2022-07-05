@@ -43,6 +43,8 @@ export const getRacket = (id) => async dispatch => {
 };
 
 export const createRacket = (payload) => async dispatch => {
+    console.log(payload, '---------------What is going in?');
+    const { name, brandId, description, userId } = payload
     const response = await csrfFetch('/api/rackets', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -57,7 +59,7 @@ export const createRacket = (payload) => async dispatch => {
 };
 
 export const removeRacket = (id) => async dispatch => {
-    const response = await fetch (`/api/rackets/${id}`, {
+    const response = await csrfFetch(`/api/rackets/${id}`, {
         method: 'DELETE',
     });
     if (response.ok) {
@@ -81,8 +83,8 @@ const racketReducer = (state  = initialState, action) => {
             return newState;
         case LOAD_RACKET:
             return { ...state, [action.racket.racket.id]: action.racket.racket};
-        // case ADD_RACKET:
-        //     return
+        case ADD_RACKET:
+            return { ...state, [action.racket.id]: action.racket};
         case DELETE_RACKET:
             return delete { ...state, [action.id]: action.id };
         default:

@@ -71,7 +71,7 @@ export const getASingleGym = (id) => async dispatch => {
 
 export const updateGym = (data) => async dispatch => {
     console.log(data, 'Should be getting something!!!');
-    const response = await fetch(`/api/gyms/${data.gymId}/edit`, {
+    const response = await csrfFetch(`/api/gyms/${data.gymId}/edit`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ export const updateGym = (data) => async dispatch => {
 
 // Is this not needed to delete?
 export const deleteGym = (id) => async dispatch => {
-    const response = await fetch (`/api/gyms/${id}`, {
+    const response = await csrfFetch(`/api/gyms/${id}`, {
         method: 'DELETE',
     });
     if (response.ok) {
@@ -113,7 +113,7 @@ const gymReducer = (state = initialState, action) => {
             return { ...state, [action.gym.gym.id]: action.gym.gym};
         case UPDATE_GYM:
             return {
-                ...state, [action.gym.id]: action.gym
+                ...state, [action.gym.gym.id]: {...action.gym.gym}
             };
         case DELETE_GYM:
             return delete { ...state, [action.id]: action.id};
