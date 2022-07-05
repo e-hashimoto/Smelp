@@ -3,9 +3,9 @@ import { csrfFetch } from "./csrf";
 const GET_GYMS = 'gyms/getAllGyms';
 const GET_ONE_GYM = 'gyms/getOneGym';
 const ADD_ONE = 'gyms/addOneGym';
-// const LOAD_BRANDS = 'brands/LOAD';
 const UPDATE_GYM = 'gyms/updateAGym';
 const DELETE_GYM = 'gyms/deleteAGym';
+
 
 // Action creators
 const getAllGyms = gyms => ({
@@ -32,20 +32,17 @@ const deleteAGym = gym => ({
     type: DELETE_GYM,
     gym
 });
-
-// const loadBrands = brands => ({
-//     type: LOAD_BRANDS,
-//     brands
-// });
-
 // Thunks
 
 export const createGym = (payload) => async dispatch => {
+    console.log('                        working')
     const response = await csrfFetch('/api/gyms', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
     });
+
+    console.log(' Hi ', response);
 
     if (response.ok) {
         const gym = await response.json();
@@ -72,13 +69,14 @@ export const getASingleGym = (id) => async dispatch => {
     }
 };
 
-export const updateGym = (id) => async dispatch => {
-    const response = await fetch(`/api/gyms/${id}`, {
+export const updateGym = (data) => async dispatch => {
+    console.log(data, 'Should be getting something!!!');
+    const response = await csrfFetch(`/api/gyms/${data.gymId}/edit`, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(id)
+        body: JSON.stringify(data)
     });
 
     if (response.ok) {
@@ -90,23 +88,14 @@ export const updateGym = (id) => async dispatch => {
 
 // Is this not needed to delete?
 export const deleteGym = (id) => async dispatch => {
-    const response = await fetch (`/api/gyms/${id}`, {
+    const response = await csrfFetch(`/api/gyms/${id}`, {
         method: 'DELETE',
     });
     if (response.ok) {
         const removedGym = await response.json();
         dispatch(deleteAGym(removedGym.id));
     };
-}
-
-// export const getBrands = () => async dispatch => {
-//     const response = await csrfFetch(`api/brands`);
-//     if (response.ok) {
-//         const list = await response.json();
-//         dispatch(loadBrands(list))
-//     }
-// }
-
+};
 
 // REDUCER
 const initialState = {};
@@ -121,10 +110,10 @@ const gymReducer = (state = initialState, action) => {
             });
             return newState;
         case GET_ONE_GYM:
-            return { ...state, [action.gym.id]: action.gym};
+            return { ...state, [action.gym.gym.id]: action.gym.gym};
         case UPDATE_GYM:
             return {
-                ...state, [action.gym.id]: action.gym
+                ...state, [action.gym.gym.id]: {...action.gym.gym}
             };
         case DELETE_GYM:
             return delete { ...state, [action.id]: action.id};

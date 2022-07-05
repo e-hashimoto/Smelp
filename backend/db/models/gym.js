@@ -15,11 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     brandId: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
     },
     userId: {
       type: DataTypes.INTEGER,
-      allowNull: false
     }
   }, {});
   Gym.associate = function(models) {

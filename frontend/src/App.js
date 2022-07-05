@@ -9,6 +9,8 @@ import Gyms from "./components/Gyms/AllGyms";
 import Brands from "./components/Brands/index";
 import Error from "./components/PageNotFound/index"
 import SingleGym from "./components/Gym/index";
+import SingleBrand from "./components/Brand";
+import SingleRacket from "./components/Racket";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,17 +27,23 @@ function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/gyms">
+          <Route exact path="/gyms">
             <Gyms />
           </Route>
           <Route path="/gyms/:id">
             <SingleGym />
           </Route>
-          <Route path="/rackets">
+          <Route exact path="/rackets">
             <Rackets />
           </Route>
-          <Route path="/brands">
+          <Route path="/rackets/:id">
+            <SingleRacket />
+          </Route>
+          <Route exact path="/brands">
             <Brands />
+          </Route>
+          <Route path="/brands/:id">
+            <SingleBrand />
           </Route>
           <Route>
             <Error />

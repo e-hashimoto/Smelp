@@ -2,11 +2,12 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createGym } from "../../store/gyms";
+// import { csrfFetch } from "../../store/csrf";
 
 const CreateGymForm = ({hideForm}) => {
     const dispatch = useDispatch();
     const history = useHistory();
-    const brands = useSelector(state => state.brand.names)
+    // const brands = useSelector(state => state.brand.names)
     const [title, setTitle] = useState("");
     const [location, setLocation] = useState("");
     const [description, setDescription] = useState("");
@@ -18,9 +19,9 @@ const CreateGymForm = ({hideForm}) => {
     const updateDescription = (e) => setDescription(e.target.value);
     const updateBrandName = (e) => setBrandName(e.target.value);
 
-    // useEffect(() => {
-    //     dispatch(getBrands());
-    // }, [dispatch]);
+    useEffect(() => {
+
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +30,7 @@ const CreateGymForm = ({hideForm}) => {
             title,
             location,
             description,
-            brandId
+            brandId: 1
         };
 
         let createdGym = await dispatch(createGym(payload));
@@ -37,6 +38,13 @@ const CreateGymForm = ({hideForm}) => {
             history.push(`/gyms/${createdGym.id}`);
             hideForm();
         }
+        // const response = await csrfFetch('/api/gyms', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify(payload)
+        // });
+
+        console.log('                     This should be working')
     };
 
     const handleCancelClick = (e) => {
@@ -66,11 +74,8 @@ const CreateGymForm = ({hideForm}) => {
                     required
                     value={description}
                     onChange={updateDescription}/>
-                <select onChange={updateBrandName} value={null} placeholder="Sponsored By">
-                    <option value={null}></option>
-                    {brands.map(brand =>
-                        <option key={brand.id} value={brand.id}>{brand.name}</option>
-                    )}
+                <select>
+                    1
                 </select>
                 <button type="submit">Create New Gym</button>
                 <button type="button" onClick={handleCancelClick}>Cancel</button>

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink, Route, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CreateGymForm from './CreateGymForm';
 import './index.css';
 
-import { getGyms } from '../../store/gyms';
+import { getASingleGym, getGyms } from '../../store/gyms';
 
 function Gyms() {
     const dispatch = useDispatch();
@@ -16,20 +16,24 @@ function Gyms() {
         dispatch(getGyms())
     }, [dispatch]);
 
+    const handleClick = (id) => {
+        dispatch(getASingleGym(id))
+    }
+
     return (
         <main className='index-page'>
             <h1>Look at the Gyms!</h1>
             <div>
                 {gyms.map((gym) => {
                     return <div key={gym.id}>
-                        <NavLink exact to={`/gyms/${gym.id}`}>{gym.title}</NavLink>
+                        <Link exact to={`/gyms/${gym.id}`} onClick={() => handleClick(gym.id) }>{gym.title}</Link>
                     </div>
                 })}
             </div>
             <h1>Don't see your gym here already?  Tell us about it!</h1>
-            {/* <div>
+            <div>
                 <CreateGymForm />
-            </div> */}
+            </div>
         </main>
     )
 };
