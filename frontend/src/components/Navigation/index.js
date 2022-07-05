@@ -22,7 +22,7 @@ function Navigation({ isLoaded }) {
   }
 
   return (
-    <div className="header">
+    <div className="header" style={{ display: "flex", flexDirection: "column" }}>
       <ul className="buttons">
         <div>
           <NavLink exact to="/">
